@@ -8,7 +8,8 @@ export const toCountdown = ({ from = moment(), until, t }) => {
   const targetTime = moment(until);
   if (from.isAfter(until)) return t("countdown.thanks");
   const timeBetween = moment.duration(targetTime.diff(from));
-  return `${timeBetween.months()} ${t(
+  const totalMonths = Math.floor(timeBetween.asMonths());
+  return `${totalMonths} ${t(
     "countdown.months"
   )} ${timeBetween.days()} ${t("countdown.days")} ${timeBetween.hours()} ${t(
     "countdown.hours"

@@ -235,3 +235,75 @@ h2 {
 
 /* Tom & Emma custom styling */
 body{background:#fbf8f2;color:#3f443d}.navbar{background:rgba(251,248,242,.96);border-bottom:1px solid rgba(92,111,90,.18)}.navbar-item{color:#4f6250;letter-spacing:.04em}.navbar-item:hover{background:transparent!important;color:#a88355!important}.section--gradient{background:linear-gradient(180deg,#fbf8f2 0%,#f1eadf 100%)}.header-teaser{min-height:560px;background:#314238}.header-teaser>.gatsby-image-wrapper{opacity:.62;min-height:560px}.header-teaser>div img{filter:drop-shadow(0 3px 10px rgba(0,0,0,.35));max-width:min(82vw,560px)}.header-teaser h3{color:#fff!important;text-shadow:0 2px 8px rgba(0,0,0,.6);letter-spacing:.05em}.counter{color:#5c705b;font-family:"lato-bold";letter-spacing:.04em}.color-info{color:#a88355!important}footer.footer{background:#3f5143;color:#fff}@media(max-width:768px){.header-teaser,.header-teaser>.gatsby-image-wrapper{min-height:480px}.header-teaser>div img{width:92vw}}
+
+/* GitHub Pages hero fixes */
+.header-teaser {
+  position: relative;
+  display: grid;
+  width: 100%;
+  overflow: hidden;
+  background: #314238;
+}
+
+.header-teaser__image,
+.header-teaser > .gatsby-image-wrapper.header-teaser__image {
+  position: absolute !important;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 100%;
+  opacity: 1;
+}
+
+.header-teaser__image img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+.header-teaser__shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(19, 32, 25, 0.18), rgba(19, 32, 25, 0.62));
+  z-index: 1;
+}
+
+.header-teaser__content {
+  position: relative;
+  z-index: 2;
+  align-self: center;
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(92%, 760px);
+  text-align: center;
+}
+
+.header-teaser__logo {
+  width: min(82vw, 560px);
+  max-width: 100%;
+  filter: drop-shadow(0 3px 10px rgba(0, 0, 0, 0.45));
+}
+
+.header-teaser__content h3 {
+  color: #fff !important;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+  letter-spacing: 0.05em;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .header-teaser {
+    min-height: 520px !important;
+    height: 520px !important;
+  }
+
+  .header-teaser__image img {
+    object-position: center 40% !important;
+  }
+
+  .header-teaser__shade {
+    background: rgba(22, 39, 29, 0.42);
+  }
+}
