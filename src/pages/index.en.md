@@ -1,39 +1,33 @@
 ---
 templateKey: index-page
-title: Angelika & Manuel
-image: /img/home-tuscany.jpg
-imageUs: /img/us.jpg
-date: 10th of September 2022 in Siena
+title: Tom & Emma
+image: /img/tom-emma-hero.jpg
+imageUs: /img/tom-emma-rome.jpg
+date: 17 August 2027 · The Barns at Delbury Hall
 mainpitch:
-  title: Join us under the Tuscan sun
+  title: We are getting married!
   description: >
-    Dear friends and family, we are happy and excited to finally get married and have you all join us in Tuscany as we say "I do". As an international couple we can only organize an even more international party, so brace yourself for a lot of wine, fun and simply having a great time. This website contains all the infos and updates about our Big Day, so make sure to check it all out. 🥳
-heading: Wedding day
-subheading: schedule
+    We cannot wait to celebrate with our favourite people at The Barns at Delbury Hall. This website is the home for everything you need to know about our day.
+heading: Our wedding day
+subheading: the plan
 intro:
   blurbs:
-    - image: /img/ceremony.jpg
-      headline: Join us for
+    - image: /img/tom-emma-mallorca.jpg
+      headline: Arrive and settle in
+      subheading: welcome
+      text: Final arrival and ceremony details will be added once confirmed.
+    - image: /img/tom-emma-rome.jpg
+      headline: Watch us say
       subheading: I do
-      text: >
-        From 15:00 at the garden of Villa Ca' Nova Sud with a view to the medieval city of Siena.
-    - image: /img/apertivo.jpg
-      headline: Have some bubbles
-      subheading: and mingle
-      text: >
-        From 16:00 at the front garden of Villa Colombaio, with Live Music from the amazing <a href="https://www.instagram.com/gisellazambito" target="_blank">Gisella Zambito</a>.
-    - image: /img/dinner.jpg
-      headline: Bring me the
-      subheading: pasta!
-      text: >
-        From 17:00 at the back garden of Villa Colombaio, with authentic Tuscan food from <a href="https://www.lauroracatering.it/" target="_blank"> L'Aurora Catering</a>.
-    - image: /img/party.jpg
-      headline: Let's get the party
-      subheading: started!
-      text: >
-        From 20:00 at the back garden of Villa Colombaio, and from midnight inside of the Villa Colombaio.
-  heading: Heading
-description: >
-  The times and places of events might be subject to spontaneous changes due to weather conditions, so please check the website for any updates. <br> 
-  For dresscode and outfit ideas check our special <a href="https://pin.it/1mYdkGt" target="_blank"> Pinterest Board</a>🕺 💃.
+      text: Our ceremony will be followed by drinks and photographs with everyone we love.
+    - image: /img/tom-emma-holiday.jpg
+      headline: Dinner, speeches and
+      subheading: celebrations
+      text: We will sit down together for dinner, speeches and a few happy tears.
+    - image: /img/tom-emma-costume.jpg
+      headline: Bring your dancing shoes
+      subheading: party time
+      text: Expect music, dancing and plenty of fun late into the evening.
+  heading: Wedding day
+description: More details will be added as our plans are finalised. Please check back nearer the wedding.
 ---

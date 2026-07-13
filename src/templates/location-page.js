@@ -45,7 +45,7 @@ export const LocationPageTemplate = ({
                 <Zoom zoomMargin={40}>
                   <GatsbyImage
                     image={images.imageVilla.childImageSharp.gatsbyImageData}
-                    alt={"Tenuta Larnianone"}
+                    alt={"Tom and Emma"}
                   />
                 </Zoom>
               </div>
@@ -68,7 +68,7 @@ export const LocationPageTemplate = ({
                       <p>{address.country}</p>
                       <a
                         className="is-size-6"
-                        href="https://goo.gl/maps/Svvok29DSFe7vwT47"
+                        href="https://maps.app.goo.gl/cXMuLV4BqcBaxcVo6?g_st=ic"
                         target="_blank"
                         rel="noreferrer"
                       >
@@ -76,7 +76,7 @@ export const LocationPageTemplate = ({
                       </a>
                       <a
                         className="is-size-6"
-                        href="https://tenutalarnianone.com/villas/colombaio/"
+                        href="https://maps.app.goo.gl/cXMuLV4BqcBaxcVo6?g_st=ic"
                         target="_blank"
                         rel="noreferrer"
                       >
@@ -90,7 +90,7 @@ export const LocationPageTemplate = ({
                         image={
                           images.imageTenuta.childImageSharp.gatsbyImageData
                         }
-                        alt={"Tenuta Larnianone"}
+                        alt={"Tom and Emma"}
                       />
                     </Zoom>
                   </div>

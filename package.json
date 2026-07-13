@@ -1,8 +1,8 @@
 {
-  "name": "Wedding-RSVP",
-  "description": "This project is serving a wedding website and an RSVP for the wedding of Angelika and Manuel in 2022.",
+  "name": "tom-emma-wedding",
+  "description": "Wedding website for Tom and Emma",
   "version": "1.1.3",
-  "author": "Manuel Berger",
+  "author": "Tom and Emma",
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
@@ -62,7 +62,8 @@
     "dev": "npm run clean && gatsby develop",
     "serve": "gatsby serve",
     "format": "prettier --trailing-comma es5 --no-semi --single-quote --write \"{gatsby-*.js,src/**/*.js}\"",
-    "test": "jest"
+    "test": "jest",
+    "build:pages": "gatsby build --prefix-paths"
   },
   "jest": {
     "transform": {
