@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { graphql } from "gatsby";
 import Layout from "../components/Layout";
 import Content, { HTMLContent } from "../components/Content";
-import FormContainer from "../components/rsvp-form/FormContainer";
 import FullWidthImage from "../components/FullWidthImage";
 import { getImage } from "gatsby-plugin-image";
 import Heading from "../components/Heading";
@@ -41,7 +40,7 @@ export const RsvpPageTemplate = ({
                 colorClass="color-primary"
               />
               <div className="column p-0 is-12-tablet is-offset-0-tablet is-10-desktop is-offset-1-desktop">
-                <FormContainer />
+                <div className="notification has-text-centered">The RSVP form will open when invitations are sent.</div>
               </div>
             </div>
           </div>

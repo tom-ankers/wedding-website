@@ -2,58 +2,58 @@
   "langKey": "en",
   "navigation": {
     "home": "Home",
-    "location": "Location",
+    "location": "Venue",
     "accommodation": "Accommodation",
     "activities": "Things to do",
     "rsvp": "RSVP",
     "faq": "FAQ",
     "contact": "Contact",
-    "imprint": "Imprint and Data Privacy"
+    "imprint": "Privacy"
   },
   "countdown": {
-    "months": "Months",
-    "days": "Days",
-    "hours": "Hours",
-    "thanks": "Thank you for being there, it was amazing!"
+    "months": "months",
+    "days": "days",
+    "hours": "hours",
+    "thanks": "Today is the day!"
   },
   "form": {
-    "title": "Guest Sign Up",
-    "firstName": "First Name",
-    "lastName": "Last Name",
+    "title": "Guest RSVP",
+    "firstName": "First name",
+    "lastName": "Last name",
     "guestReference": "Guest {{number}}'s name",
-    "foodPreference": "Food Preference",
-    "dietaryRestrictions": "Dietary restrictions",
-    "meat": "Meat 🥩",
-    "veggie": "Veggie 🥦",
+    "foodPreference": "Food preference",
+    "dietaryRestrictions": "Dietary requirements",
+    "meat": "Meat",
+    "veggie": "Vegetarian",
     "comment": "Comment",
     "noDietaryRestrictions": "None",
     "willYouAttend": "Will you attend our wedding?",
     "yes": "Yes",
     "no": "No",
     "chooseFoodPreference": "Choose your food preference:",
-    "foodAllergies": "Do you have any food allergies or intolerances?",
-    "foodAllergiesExamples": "For example: nuts, gluten, seafood, etc.",
-    "shortComment": "Do you want to leave a short comment?",
-    "receivedRsvp": "We've received your RSVP for",
+    "foodAllergies": "Any allergies?",
+    "foodAllergiesExamples": "For example: nuts, gluten or dairy",
+    "shortComment": "Leave a message",
+    "receivedRsvp": "RSVP received for",
     "addMore": "Add another guest",
     "errors": {
       "firstNameRequired": "First name is required.",
       "lastNameRequired": "Last name is required.",
-      "attendingRequired": "Please answer, if you attend.",
-      "eatingMeatRequired": "Please let us know what you prefer.",
-      "serverRequestFailed": "There was an error. Please try submitting again."
+      "attendingRequired": "Please answer.",
+      "eatingMeatRequired": "Please select a preference.",
+      "serverRequestFailed": "There was an error."
     },
     "nodietaryrestrictions": "None",
     "header": {
-      "title": "Angelika and Manuel's celebration on September 10th, 2022",
-      "oneperson": "You've added 1 person to your party so far.",
-      "morepeople": "You've added {{numGuests}} people to your party so far."
+      "title": "Tom and Emma's wedding on 17 August 2027",
+      "oneperson": "1 person added.",
+      "morepeople": "{{numGuests}} people added."
     },
     "cta": {
-      "success": "Hooray! Can't wait to see you on the big day!",
+      "success": "We cannot wait to celebrate!",
       "continue": "Continue",
       "edit": "Edit",
-      "remove": "Remove this guest",
+      "remove": "Remove guest",
       "send": "Send RSVP",
       "home": "Wedding details"
     }
