@@ -4,9 +4,7 @@ import { graphql } from "gatsby";
 import Layout from "../components/Layout";
 import Content, { HTMLContent } from "../components/Content";
 import FullWidthImage from "../components/FullWidthImage";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import Zoom from "react-medium-image-zoom";
-import "react-medium-image-zoom/dist/styles.css";
+import { getImage } from "gatsby-plugin-image";
 import Accordion from "react-bootstrap/Accordion";
 import Heading from "../components/Heading";
 
@@ -25,6 +23,20 @@ export const LocationPageTemplate = ({
 }) => {
   const PageContent = contentComponent || Content;
   const heroImage = getImage(images.home) || images.home;
+  const venueImages = [
+    {
+      src: "https://images.squarespace-cdn.com/content/v1/66951d673c45d0653e851970/ca8e675c-a099-4175-85c4-e290997296ee/delbury_styled-shoot-120.jpg",
+      alt: "The grounds at The Barns at Delbury Hall",
+    },
+    {
+      src: "https://images.squarespace-cdn.com/content/v1/66951d673c45d0653e851970/e6f9a195-b05f-47c0-9f13-d8902fbf7ca9/0401.jpg",
+      alt: "Wedding celebrations at Delbury Hall",
+    },
+    {
+      src: "https://images.squarespace-cdn.com/content/v1/66951d673c45d0653e851970/aab0beae-f704-4d1e-ab5d-3e1b9c2ee39b/DSC02967.jpg",
+      alt: "The Barns at Delbury Hall wedding venue",
+    },
+  ];
 
   return (
     <div>
@@ -41,14 +53,22 @@ export const LocationPageTemplate = ({
                 />
                 <p className="subtitle  mb-5">{mainpitch.descriptionTuscany}</p>
               </div>
-              <div className="column is-8 mb-5" style={{ margin: "auto" }}>
-                <Zoom zoomMargin={40}>
-                  <GatsbyImage
-                    image={images.imageVilla.childImageSharp.gatsbyImageData}
-                    alt={"Tom and Emma"}
-                  />
-                </Zoom>
+              <div className="columns is-multiline venue-gallery mb-5">
+                {venueImages.map((venueImage) => (
+                  <div className="column is-4" key={venueImage.src}>
+                    <figure className="venue-gallery-image">
+                      <img src={venueImage.src} alt={venueImage.alt} loading="lazy" />
+                    </figure>
+                  </div>
+                ))}
               </div>
+              <p className="has-text-centered is-size-7 mb-5">
+                Venue images courtesy of {" "}
+                <a href="https://www.delbury.co.uk/" target="_blank" rel="noreferrer">
+                  The Barns at Delbury Hall
+                </a>
+                .
+              </p>
               <div className="content has-text-centered mb-5">
                 <p className="subtitle">{mainpitch.descriptionTenuta}</p>
               </div>
@@ -85,14 +105,18 @@ export const LocationPageTemplate = ({
                     </div>
                   </div>
                   <div className="column is-8">
-                    <Zoom zoomMargin={40}>
-                      <GatsbyImage
-                        image={
-                          images.imageTenuta.childImageSharp.gatsbyImageData
-                        }
-                        alt={"Tom and Emma"}
-                      />
-                    </Zoom>
+                    <div className="venue-map-wrapper">
+                      <iframe
+                        title="The Barns at Delbury Hall map"
+                        src="https://www.google.com/maps?q=The%20Barns%20at%20Delbury%20Hall%2C%20Diddlebury%2C%20Craven%20Arms&output=embed"
+                        width="100%"
+                        height="460"
+                        style={{ border: 0 }}
+                        allowFullScreen=""
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                      ></iframe>
+                    </div>
                   </div>
                 </div>
               </div>

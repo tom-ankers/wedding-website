@@ -7,7 +7,6 @@ import FullWidthImage from "../components/FullWidthImage";
 import { getImage } from "gatsby-plugin-image";
 import Heading from "../components/Heading";
 
-// eslint-disable-next-line
 export const RsvpPageTemplate = ({
   title,
   subheading,
@@ -39,12 +38,73 @@ export const RsvpPageTemplate = ({
                 belowText={rsvpSubheading}
                 colorClass="color-primary"
               />
-              <div className="column p-0 is-12-tablet is-offset-0-tablet is-10-desktop is-offset-1-desktop">
-                <div className="notification has-text-centered">The RSVP form will open when invitations are sent.</div>
-              </div>
+
+              <form
+                className="box rsvp-simple-form"
+                action="https://formsubmit.co/thomasjamesankers@gmail.com"
+                method="POST"
+              >
+                <input type="hidden" name="_subject" value="New Tom & Emma wedding RSVP" />
+                <input type="hidden" name="_captcha" value="false" />
+                <input
+                  type="hidden"
+                  name="_next"
+                  value="https://tom-ankers.github.io/wedding-website/en/rsvp/?submitted=true"
+                />
+                <input type="text" name="_honey" style={{ display: "none" }} tabIndex="-1" autoComplete="off" />
+
+                <div className="field">
+                  <label className="label" htmlFor="guest-name">Name</label>
+                  <div className="control">
+                    <input
+                      className="input"
+                      id="guest-name"
+                      name="Name"
+                      type="text"
+                      placeholder="Your full name"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="field">
+                  <label className="label">Meal choice</label>
+                  <div className="control rsvp-meal-options">
+                    <label className="radio mr-5">
+                      <input type="radio" name="Meal choice" value="Meat" required /> Meat
+                    </label>
+                    <label className="radio">
+                      <input type="radio" name="Meal choice" value="Vegetarian" required /> Vegetarian
+                    </label>
+                  </div>
+                </div>
+
+                <div className="field">
+                  <label className="label" htmlFor="dietary-requirements">Dietary requirements</label>
+                  <div className="control">
+                    <textarea
+                      className="textarea"
+                      id="dietary-requirements"
+                      name="Dietary requirements"
+                      placeholder="Please tell us about allergies, intolerances or other dietary requirements. Write ‘None’ if there are none."
+                      rows="5"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="field mt-5 has-text-centered">
+                  <button className="button is-primary is-medium" type="submit">
+                    Send RSVP
+                  </button>
+                </div>
+                <p className="help has-text-centered mt-4">
+                  The first submission will trigger a one-time FormSubmit confirmation email to Tom. Once confirmed, future RSVPs will be delivered automatically.
+                </p>
+              </form>
             </div>
           </div>
-          <PageContent />
+          <PageContent content={content} />
         </div>
       </section>
     </>
@@ -55,7 +115,7 @@ RsvpPageTemplate.propTypes = {
   title: PropTypes.string.isRequired,
   image: PropTypes.object,
   content: PropTypes.string,
-  subheadin: PropTypes.string,
+  subheading: PropTypes.string,
   description: PropTypes.string,
   rsvpTitle: PropTypes.string,
   rsvpSubheading: PropTypes.string,

@@ -11,7 +11,7 @@ handwrittenTitle: Meet us in
 handwrittenSubtitle: Shropshire
 mainpitch:
   descriptionTuscany: Set in the Shropshire countryside, The Barns at Delbury Hall is where our ceremony and celebrations will take place on Tuesday 17 August 2027.
-  descriptionTenuta: Everything will take place at one venue, so once you arrive you can relax and enjoy the whole day with us.
+  descriptionTenuta: Everything will take place at one venue, so once you arrive you can relax and enjoy the whole day with us. Use the interactive map below to explore the location and plan your route.
 address:
   name: The Barns at Delbury Hall
   villa: Delbury Hall
