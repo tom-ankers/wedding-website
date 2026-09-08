@@ -15,9 +15,7 @@ const translationPL = require("./src/locales/pl/translation.json");
 
 const pathArray = window.location.pathname.split("/");
 exports.onClientEntry = () => {
-  if (window.location.pathname === "/") {
-    window.location.pathname = `/${locale}`;
-  } else if (pathArray.length > 1) {
+  if (pathArray.length > 1) {
     locale = window.location.pathname.split("/")[1];
   }
 

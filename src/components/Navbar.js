@@ -1,60 +1,46 @@
 import React, { useState } from "react";
 import { withPrefix } from "gatsby";
-import { withTranslation } from "react-i18next";
 
-function Navbar(props) {
+export default function Navbar() {
   const [active, setActive] = useState(false);
-
-  const toggleHamburger = () => setActive((current) => !current);
-  const activeClass = active ? "is-active" : "";
-
-  const links = [
-    ["navigation.home", "/en/"],
-    ["navigation.location", "/en/location/"],
-    ["navigation.accommodation", "/en/accommodation/"],
-    ["navigation.activities", "/en/activities/"],
-    ["navigation.rsvp", "/en/rsvp/"],
-    ["navigation.faq", "/en/faq/"],
-    ["navigation.contact", "/en/contact/"],
-  ];
-
   return (
-    <nav className="navbar is-transparent" role="navigation" aria-label="main-navigation">
+    <nav className="navbar wedding-nav" aria-label="Main navigation">
       <div className="container">
         <div className="navbar-brand">
+          <a className="navbar-item" href={`${withPrefix("/en/")}#home`}>
+            Tom &amp; Emma
+          </a>
           <button
             type="button"
-            className={`navbar-burger burger ${activeClass}`}
-            aria-label="menu"
+            className={`navbar-burger ${active ? "is-active" : ""}`}
+            aria-label="Toggle menu"
             aria-expanded={active}
-            onClick={toggleHamburger}
+            aria-controls="navMenu"
+            onClick={() => setActive(!active)}
           >
             <span aria-hidden="true" />
             <span aria-hidden="true" />
             <span aria-hidden="true" />
           </button>
         </div>
-
-        <div id="navMenu" className={`navbar-menu ${activeClass}`}>
-          <div className="navbar-start has-text-centered">
-            {links.map(([label, path]) => (
+        <div
+          id="navMenu"
+          className={`navbar-menu ${active ? "is-active" : ""}`}
+        >
+          <div className="navbar-end has-text-centered">
+            {["Venue", "Accommodation", "RSVP"].map((label) => (
               <a
-                key={path}
+                key={label}
                 className="navbar-item"
-                href={withPrefix(path)}
+                href={`${withPrefix("/en/")}#${label.toLowerCase()}`}
                 onClick={() => setActive(false)}
               >
-                {props.t(label)}
+                {label}
               </a>
             ))}
-          </div>
-          <div className="navbar-end has-text-centered">
-            <a className="navbar-item" href={withPrefix("/en/")}>EN</a>
           </div>
         </div>
       </div>
     </nav>
   );
 }
-
-export default withTranslation()(Navbar);

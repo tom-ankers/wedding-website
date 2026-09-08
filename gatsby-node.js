@@ -33,14 +33,26 @@ exports.createPages = ({ actions, graphql }) => {
 
     posts.forEach((edge) => {
       const id = edge.node.id;
+      const template = edge.node.frontmatter.templateKey;
+      const sections = {
+        "location-page": "venue",
+        "accomodation-page": "accommodation",
+        "rsvp-page": "rsvp",
+        "contact-page": "rsvp",
+        "activities-page": "venue",
+        "faq-page": "venue",
+      };
+      const isHome =
+        template === "index-page" && edge.node.fields.langKey === "en";
       createPage({
         path: edge.node.fields.slug,
         component: path.resolve(
-          `src/templates/${String(edge.node.frontmatter.templateKey)}.js`
+          `src/templates/${isHome ? template : "section-redirect"}.js`
         ),
         context: {
           id,
           langKey: edge.node.fields.langKey,
+          section: sections[template] || "",
         },
       });
     });

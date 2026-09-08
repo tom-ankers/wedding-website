@@ -350,3 +350,24 @@ body{background:#fbf8f2;color:#3f443d}.navbar{background:rgba(251,248,242,.96);b
     padding: 1.25rem;
   }
 }
+
+/* Single-page wedding details */
+html { scroll-behavior: smooth; }
+.wedding-nav { position: sticky; top: 0; z-index: 30; }
+.wedding-page { line-height: 1.7; }
+.wedding-page .container { max-width: 1040px; }
+.wedding-intro { padding: 5rem 1.5rem; background: #f1eadf; }
+.wedding-intro h1 { font-family: northwell; font-size: clamp(4rem, 10vw, 7rem); color: #354d37; margin: 0.5rem 0 1rem; }
+.wedding-eyebrow { text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.85rem; }
+.wedding-section { padding: 4rem 1.5rem; border-bottom: 1px solid #e1dacd; }
+.wedding-section, #home { scroll-margin-top: 5rem; }
+.wedding-section h2 { color: #354d37; margin-bottom: 2rem; }
+.wedding-section address { font-style: normal; }
+.wedding-section a { color: #354d37; text-decoration: underline; text-underline-offset: 0.2em; }
+.stay-card { height: 100%; padding: 1.5rem; border: 1px solid #ded6c9; border-radius: 0.5rem; }
+.stay-card a { display: inline-block; margin-top: 1rem; }
+.wedding-page .button.is-primary { background: #354d37; color: white; }
+.wedding-page .button.is-primary:hover { background: #263e28; }
+.wedding-page a:focus-visible, .wedding-nav a:focus-visible { outline: 2px solid #a88355; outline-offset: 4px; }
+@media (max-width: 768px) { .wedding-intro { padding: 3rem 1.5rem; } .wedding-section { padding: 3rem 1.5rem; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

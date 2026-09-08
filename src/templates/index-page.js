@@ -1,191 +1,170 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { graphql } from "gatsby";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import Countdown from "../components/Countdown";
-import Zoom from "react-medium-image-zoom";
-import { HTMLContent } from "../components/Content";
 import Layout from "../components/Layout";
-import Features from "../components/Features";
-import FullWidthImage from "../components/FullWidthImage";
+import RsvpForm from "../components/RsvpForm";
 
-// eslint-disable-next-line
-export const IndexPageTemplate = ({
-  image,
-  imageUs,
-  title,
-  content,
-  contentComponent,
-  date,
-  heading,
-  subheading,
-  mainpitch,
-  description,
-  intro,
-}) => {
-  const heroImage = getImage(image) || image;
-
+export default function IndexPage({ data }) {
+  const home = data.home.frontmatter;
+  const venue = data.venue.frontmatter;
+  const stay = data.stay.frontmatter;
   return (
-    <div>
-      <FullWidthImage img={heroImage} subheading={date} />
-      <section className="section section--gradient">
-        <div className="container is-widescreen">
-          <Countdown className="has-text-centered mb-5" />
-          <div className="columns">
-            <div className="column is-12-tablet is-offset-0-tablet is-10-desktop is-offset-1-desktop">
-              <div className="content">
-                <div className="content has-text-centered">
-                  <h2 className="title is-size-3 has-text-weight-semibold has-text-centered">
-                    {mainpitch.title}
-                  </h2>
-                  <div className="tile">
-                    <p className="subtitle">{mainpitch.description}</p>
-                  </div>
+    <Layout>
+      <main id="home" className="wedding-page">
+        <header className="wedding-intro has-text-centered">
+          <p className="wedding-eyebrow">We are getting married</p>
+          <h1>{home.title}</h1>
+          <p className="subtitle">{home.date}</p>
+          <p>We cannot wait to celebrate with you.</p>
+          <a className="button is-primary mt-4" href="#rsvp">
+            RSVP
+          </a>
+        </header>
+        <section
+          id="venue"
+          className="section wedding-section"
+          aria-labelledby="venue-title"
+        >
+          <div className="container">
+            <h2 id="venue-title" className="title is-size-3">
+              Venue
+            </h2>
+            <div className="columns is-variable is-6">
+              <div className="column is-5">
+                <h3 className="title is-size-4">{venue.title}</h3>
+                <p>{venue.mainpitch.descriptionTuscany}</p>
+                <p className="mt-4">
+                  Our ceremony and celebrations will all take place at the same
+                  venue.
+                </p>
+                <address className="my-5">
+                  {venue.address.street}
+                  <br />
+                  {venue.address.city}
+                  <br />
+                  {venue.address.country}
+                </address>
+                <a
+                  href="https://maps.app.goo.gl/cXMuLV4BqcBaxcVo6?g_st=ic"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Open in Google Maps ↗
+                </a>
+                <p className="mt-4">
+                  Parking, arrival and transport details will be shared closer
+                  to the wedding.
+                </p>
+              </div>
+              <div className="column is-7">
+                <div className="venue-map-wrapper">
+                  <iframe
+                    title="The Barns at Delbury Hall map"
+                    src="https://www.google.com/maps?q=The%20Barns%20at%20Delbury%20Hall%2C%20Diddlebury%2C%20Craven%20Arms&output=embed"
+                    width="100%"
+                    height="380"
+                    style={{ border: 0, display: "block" }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
                 </div>
-                <div className="column is-8 mb-5" style={{ margin: "auto" }}>
-                  <Zoom zoomMargin={40}>
-                    <GatsbyImage
-                      image={imageUs.childImageSharp.gatsbyImageData}
-                      alt={"Tenuta Larnianone"}
-                    />
-                  </Zoom>
-                </div>
-                <div className="columns">
-                  <div className="column is-12 has-text-centered">
-                    <h3
-                      style={{
-                        textTransform: "uppercase",
-                        position: "relative",
-                        top: "30px",
-                        right: "10%",
-                      }}
-                      className="has-text-weight-semibold is-size-4"
-                    >
-                      {heading}
-                    </h3>
-                    <p
-                      style={{
-                        position: "relative",
-                        left: "40px",
-                        top: "-20px",
-                        marginBottom: "-20px",
-                      }}
-                      className="is-size-0-h font-northwell color-info"
-                    >
-                      {subheading}
-                    </p>
-                  </div>
-                </div>
-                <Features gridItems={intro.blurbs} />
               </div>
             </div>
           </div>
-          <div className="columns">
-            <div
-              className="column is-10 is-offset-1 has-text-centered"
-              dangerouslySetInnerHTML={{ __html: description }}
-            />
+        </section>
+        <section
+          id="accommodation"
+          className="section wedding-section"
+          aria-labelledby="accommodation-title"
+        >
+          <div className="container">
+            <h2 id="accommodation-title" className="title is-size-3">
+              Accommodation
+            </h2>
+            <p>{stay.description}</p>
+            <div className="columns is-variable is-5 mt-4">
+              {stay.accommodations.map((area) => (
+                <div className="column" key={area.name}>
+                  <article className="stay-card">
+                    <h3 className="title is-size-4">{area.name}</h3>
+                    <p>{area.description}</p>
+                    <a href={area.url} target="_blank" rel="noreferrer">
+                      Find places to stay in {area.name} ↗
+                    </a>
+                  </article>
+                </div>
+              ))}
+            </div>
+            <p className="mt-4">{stay.information}</p>
           </div>
-        </div>
-      </section>
-    </div>
-  );
-};
-
-IndexPageTemplate.propTypes = {
-  langKey: PropTypes.string,
-  image: PropTypes.object,
-  imageUs: PropTypes.object,
-  title: PropTypes.string,
-  contentComponent: PropTypes.func,
-  heading: PropTypes.string,
-  subheading: PropTypes.string,
-  date: PropTypes.string,
-  mainpitch: PropTypes.object,
-  description: PropTypes.string,
-  intro: PropTypes.shape({
-    blurbs: PropTypes.array,
-  }),
-};
-
-const IndexPage = ({ data }) => {
-  const { frontmatter } = data.markdownRemark;
-
-  return (
-    <Layout>
-      <IndexPageTemplate
-        image={frontmatter.image}
-        imageUs={frontmatter.imageUs}
-        content={frontmatter.html}
-        contentComponent={HTMLContent}
-        title={frontmatter.title}
-        date={frontmatter.date}
-        heading={frontmatter.heading}
-        subheading={frontmatter.subheading}
-        mainpitch={frontmatter.mainpitch}
-        description={frontmatter.description}
-        intro={frontmatter.intro}
-      />
+        </section>
+        <section
+          id="rsvp"
+          className="section wedding-section"
+          aria-labelledby="rsvp-title"
+        >
+          <div className="container">
+            <div className="has-text-centered mb-5">
+              <h2 id="rsvp-title" className="title is-size-3">
+                RSVP
+              </h2>
+              <p>{data.rsvp.frontmatter.description}</p>
+              <p className="mt-3">Please submit one RSVP for each guest.</p>
+            </div>
+            <RsvpForm />
+          </div>
+        </section>
+      </main>
     </Layout>
   );
-};
-
-IndexPage.propTypes = {
-  data: PropTypes.shape({
-    markdownRemark: PropTypes.shape({
-      frontmatter: PropTypes.object,
-    }),
-  }),
-};
-
-export default IndexPage;
+}
 
 export const pageQuery = graphql`
-  query IndexPageTemplate($langKey: String!) {
-    markdownRemark(
-      fields: { langKey: { eq: $langKey } }
+  query WeddingHome {
+    home: markdownRemark(
+      fields: { langKey: { eq: "en" } }
       frontmatter: { templateKey: { eq: "index-page" } }
     ) {
-      html
-      fields {
-        langKey
-      }
       frontmatter {
         title
-        image {
-          childImageSharp {
-            gatsbyImageData(
-              quality: 100
-              layout: FULL_WIDTH
-              placeholder: BLURRED
-            )
-          }
-        }
-        imageUs {
-          childImageSharp {
-            gatsbyImageData(quality: 80, layout: CONSTRAINED)
-          }
-        }
         date
-        heading
-        subheading
+      }
+    }
+    venue: markdownRemark(
+      fields: { langKey: { eq: "en" } }
+      frontmatter: { templateKey: { eq: "location-page" } }
+    ) {
+      frontmatter {
+        title
         mainpitch {
-          title
+          descriptionTuscany
+        }
+        address {
+          street
+          city
+          country
+        }
+      }
+    }
+    stay: markdownRemark(
+      fields: { langKey: { eq: "en" } }
+      frontmatter: { templateKey: { eq: "accomodation-page" } }
+    ) {
+      frontmatter {
+        description
+        information
+        accommodations {
+          name
           description
+          url
         }
-        intro {
-          blurbs {
-            image {
-              childImageSharp {
-                gatsbyImageData(quality: 80, layout: CONSTRAINED)
-              }
-            }
-            headline
-            subheading
-            text
-          }
-          heading
-        }
+      }
+    }
+    rsvp: markdownRemark(
+      fields: { langKey: { eq: "en" } }
+      frontmatter: { templateKey: { eq: "rsvp-page" } }
+    ) {
+      frontmatter {
         description
       }
     }
