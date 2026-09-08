@@ -28,16 +28,18 @@ export default function Navbar() {
           className={`navbar-menu ${active ? "is-active" : ""}`}
         >
           <div className="navbar-end has-text-centered">
-            {["Venue", "Accommodation", "RSVP"].map((label) => (
-              <a
-                key={label}
-                className="navbar-item"
-                href={`${withPrefix("/en/")}#${label.toLowerCase()}`}
-                onClick={() => setActive(false)}
-              >
-                {label}
-              </a>
-            ))}
+            {["Venue", "Accommodation", "Taxis", "Gifts", "RSVP"].map(
+              (label) => (
+                <a
+                  key={label}
+                  className="navbar-item"
+                  href={`${withPrefix("/en/")}#${label.toLowerCase()}`}
+                  onClick={() => setActive(false)}
+                >
+                  {label}
+                </a>
+              )
+            )}
           </div>
         </div>
       </div>

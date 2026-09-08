@@ -1,36 +1,37 @@
-import React from "react";
-import moment from "moment";
-import { useTranslation } from "gatsby-plugin-react-i18next";
+import React, { useEffect, useState } from "react";
 
-export const toCountdown = ({ from = moment(), until, t }) => {
-  if (!until) return "";
-  if (typeof from === "string") from = moment(from);
-  const targetTime = moment(until);
-  if (from.isAfter(until)) return t("countdown.thanks");
-  const timeBetween = moment.duration(targetTime.diff(from));
-  const totalMonths = Math.floor(timeBetween.asMonths());
-  return `${totalMonths} ${t(
-    "countdown.months"
-  )} ${timeBetween.days()} ${t("countdown.days")} ${timeBetween.hours()} ${t(
-    "countdown.hours"
-  )}`;
-};
+export const WEDDING_DATE = "2027-08-17T00:00:00+01:00";
 
-const Countdown = (props) => {
-  const { t } = useTranslation();
-  const browser = typeof window !== "undefined" && window;
+export function toCountdown({ from = new Date(), until = WEDDING_DATE } = {}) {
+  const remaining = new Date(until).getTime() - new Date(from).getTime();
+  if (!Number.isFinite(remaining)) return "";
+  if (remaining <= 0) {
+    return remaining > -86400000 ? "Today is the day!" : "Just married!";
+  }
+  const minutes = Math.floor(remaining / 60000);
+  return [
+    [Math.floor(minutes / 1440), "day"],
+    [Math.floor((minutes % 1440) / 60), "hour"],
+    [minutes % 60, "minute"],
+  ]
+    .map(([value, unit]) => `${value} ${unit}${value === 1 ? "" : "s"}`)
+    .join(" · ");
+}
 
+export default function Countdown() {
+  const [countdown, setCountdown] = useState("");
+  useEffect(() => {
+    const update = () => setCountdown(toCountdown());
+    update();
+    const timer = window.setInterval(update, 1000);
+    return () => window.clearInterval(timer);
+  }, []);
   return (
-    <> 
-      <h3
-        className="counter has-text-centered"
-        style={{ fontSize: "30px" }}
-        {...props}
-      >
-        <span>&nbsp;{browser && toCountdown({ until: "2027-08-17", t }) }</span>
-      </h3>
-    </>
+    <div className="wedding-countdown">
+      <p className="wedding-eyebrow">Counting down to 17 August 2027</p>
+      <p className="counter" role="timer" aria-label="Time until our wedding">
+        {countdown || "17 August 2027"}
+      </p>
+    </div>
   );
-};
-
-export default Countdown;
+}

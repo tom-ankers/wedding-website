@@ -371,3 +371,19 @@ html { scroll-behavior: smooth; }
 .wedding-page a:focus-visible, .wedding-nav a:focus-visible { outline: 2px solid #a88355; outline-offset: 4px; }
 @media (max-width: 768px) { .wedding-intro { padding: 3rem 1.5rem; } .wedding-section { padding: 3rem 1.5rem; } }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+.wedding-countdown { margin: 2rem auto 1rem; }
+.wedding-countdown .counter { font-size: clamp(1.15rem, 3vw, 1.8rem); min-height: 2.5rem; }
+.couple-photos, .wedding-photo-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.couple-photos { max-width: 1040px; margin: 2rem auto 0; padding: 0 1.5rem; }
+.couple-photos img, .wedding-photo-grid img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 0.5rem; }
+.wedding-photo-grid { margin-bottom: 1rem; }
+.taxi-card a { display: block; }
+.taxi-card .taxi-phone { font-family: lato-bold; font-size: 1.35rem; }
+.wedding-gifts { background: #f1eadf; }
+.wedding-gifts .container { max-width: 700px; }
+@media (max-width: 600px) {
+  .couple-photos { gap: 0.5rem; padding: 0 1rem; }
+  .couple-photos img { aspect-ratio: 3 / 4; }
+  .wedding-photo-grid { grid-template-columns: 1fr; }
+}
