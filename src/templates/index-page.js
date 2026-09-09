@@ -247,7 +247,9 @@ export default function IndexPage({ data }) {
                 RSVP
               </h2>
               <p>{data.rsvp.frontmatter.description}</p>
-              <p className="mt-3">Please submit one RSVP for each guest.</p>
+              <p className="mt-3">
+                Use your invitation code to RSVP for your whole party.
+              </p>
             </div>
             <RsvpForm />
           </div>

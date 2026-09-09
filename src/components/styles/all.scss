@@ -387,3 +387,8 @@ html { scroll-behavior: smooth; }
   .couple-photos img { aspect-ratio: 3 / 4; }
   .wedding-photo-grid { grid-template-columns: 1fr; }
 }
+
+.party-guest { border: 0; border-top: 1px solid #ded6c9; margin: 2rem 0; padding: 1.5rem 0 0; min-width: 0; }
+.party-guest legend { padding-right: 0.75rem; }
+.party-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; }
+.party-actions .button { white-space: normal; height: auto; }
