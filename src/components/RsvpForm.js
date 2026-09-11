@@ -100,7 +100,7 @@ export default function RsvpForm() {
           <input
             type="hidden"
             name="_next"
-            value="https://tom-ankers.github.io/wedding-website/en/?submitted=true#rsvp"
+            value="https://tomandemma2027.co.uk/en/?submitted=true#rsvp"
           />
           <input
             type="text"
