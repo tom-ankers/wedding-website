@@ -392,3 +392,77 @@ html { scroll-behavior: smooth; }
 .party-guest legend { padding-right: 0.75rem; }
 .party-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; }
 .party-actions .button { white-space: normal; height: auto; }
+
+/* Save-the-date palette and original watercolor floral details. */
+:root {
+  --wedding-ivory: #fcf5ed;
+  --wedding-ink: #494b43;
+  --wedding-gold: #896127;
+  --wedding-blush: #f6e5df;
+  --wedding-blue: #e8edf5;
+  --wedding-sage: #e8ece3;
+  --wedding-line: #dacdbb;
+}
+body { background: var(--wedding-ivory); color: var(--wedding-ink); }
+.navbar, .navbar-menu { background: var(--wedding-ivory); }
+.navbar { border-bottom-color: var(--wedding-line); }
+.navbar-item, .navbar-burger { color: var(--wedding-gold); }
+.navbar-item:hover { color: #67471c !important; }
+.navbar-brand .navbar-item { font-family: Georgia, serif; font-size: 1.35rem; }
+.wedding-intro {
+  position: relative;
+  isolation: isolate;
+  background: var(--wedding-ivory);
+  padding: 6rem 1.5rem 4rem;
+}
+.wedding-intro::before, .wedding-intro::after, .wedding-gifts::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  z-index: -1;
+  width: min(32vw, 370px);
+  height: 280px;
+  background-image: url("../../../static/img/save-the-date-florals.jpg");
+  background-size: 620px auto;
+  background-repeat: no-repeat;
+  mask-image: linear-gradient(to bottom, #000 65%, transparent);
+}
+.wedding-intro::before { top: 0; left: 0; background-position: left top; }
+.wedding-intro::after { top: 0; right: 0; background-position: right top; }
+.wedding-intro h1 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  letter-spacing: 0.035em;
+  color: var(--wedding-gold);
+  margin: 1.25rem 0;
+}
+.wedding-intro .subtitle { color: var(--wedding-gold); font-family: Georgia, serif; letter-spacing: 0.1em; }
+.wedding-eyebrow { color: var(--wedding-gold); font-size: 0.875rem; }
+.counter { color: #59654f; }
+.wedding-section { border-color: var(--wedding-line); }
+.wedding-section h2, .wedding-section h3 { color: var(--wedding-gold); font-family: Georgia, serif; font-weight: 400; }
+.wedding-section a { color: #725329; }
+.wedding-page .button.is-primary { background: var(--wedding-gold); color: #fff; border-color: transparent; }
+.wedding-page .button.is-primary:hover { background: #6d4b20; }
+.wedding-page a:focus-visible, .wedding-nav a:focus-visible { outline-color: #725329; }
+.venue-photo { margin: 0 0 2.5rem; }
+.venue-photo img { display: block; width: 100%; height: auto; border-radius: 0.5rem; }
+#accommodation { background: var(--wedding-blue); }
+.stay-card { background: var(--wedding-ivory); border-color: var(--wedding-line); }
+#taxis .stay-card { background: var(--wedding-sage); }
+.wedding-gifts { position: relative; isolation: isolate; background: var(--wedding-blush); overflow: hidden; }
+.wedding-gifts::after { right: -60px; bottom: -50px; background-position: right top; opacity: 0.45; transform: rotate(180deg); }
+.wedding-gifts .container { position: relative; }
+.rsvp-simple-form { background: #fffaf5; color: var(--wedding-ink); border: 1px solid var(--wedding-line); box-shadow: 0 8px 28px rgba(137, 97, 39, 0.07); }
+.rsvp-simple-form .label, .rsvp-simple-form .help { color: var(--wedding-ink); }
+.rsvp-simple-form .input, .rsvp-simple-form .textarea { background: #fffdf9; border-color: #a99b85; color: var(--wedding-ink); }
+.rsvp-simple-form .input:focus, .rsvp-simple-form .textarea:focus { border-color: var(--wedding-gold); box-shadow: 0 0 0 2px #dacdbb; }
+.party-guest { border-color: var(--wedding-line); }
+.wedding-page .button.is-light { background: var(--wedding-blue); color: #414d64; }
+footer.footer { background: var(--wedding-sage); color: #59654f; border-top: 1px solid var(--wedding-line); }
+@media (max-width: 768px) {
+  .wedding-intro { padding-top: 9rem; }
+  .wedding-intro::before, .wedding-intro::after { width: 45vw; height: 145px; background-size: 340px auto; }
+  .wedding-gifts::after { opacity: 0.18; }
+}

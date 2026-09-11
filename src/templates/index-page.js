@@ -4,20 +4,6 @@ import Layout from "../components/Layout";
 import RsvpForm from "../components/RsvpForm";
 import Countdown from "../components/Countdown";
 
-const venuePhotos = [
-  [
-    "ca8e675c-a099-4175-85c4-e290997296ee/delbury_styled-shoot-120.jpg",
-    "The grounds at The Barns at Delbury Hall",
-  ],
-  [
-    "e6f9a195-b05f-47c0-9f13-d8902fbf7ca9/0401.jpg",
-    "Wedding celebrations at Delbury Hall",
-  ],
-  [
-    "aab0beae-f704-4d1e-ab5d-3e1b9c2ee39b/DSC02967.jpg",
-    "The Barns at Delbury Hall wedding venue",
-  ],
-];
 const taxis = [
   {
     name: "Wolfcar Private Hire",
@@ -86,29 +72,15 @@ export default function IndexPage({ data }) {
             <h2 id="venue-title" className="title is-size-3">
               Venue
             </h2>
-            <div className="wedding-photo-grid">
-              {venuePhotos.map(([path, alt]) => (
-                <img
-                  key={path}
-                  src={`https://images.squarespace-cdn.com/content/v1/66951d673c45d0653e851970/${path}?format=1000w`}
-                  alt={alt}
-                  loading="lazy"
-                  width="600"
-                  height="450"
-                />
-              ))}
-            </div>
-            <p className="is-size-7 mb-5">
-              Photos courtesy of{" "}
-              <a
-                href="https://www.delbury.co.uk/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                The Barns at Delbury Hall
-              </a>
-              .
-            </p>
+            <figure className="venue-photo">
+              <img
+                src={withPrefix("/img/delbury-hall-aerial.png")}
+                alt="Aerial view of Delbury Hall, its wedding barns, lakes and surrounding countryside"
+                loading="lazy"
+                width="2500"
+                height="1406"
+              />
+            </figure>
             <div className="columns is-variable is-6">
               <div className="column is-5">
                 <h3 className="title is-size-4">{venue.title}</h3>
