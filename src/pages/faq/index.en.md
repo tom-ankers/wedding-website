@@ -21,5 +21,5 @@ questions:
   - question: Is there parking?
     answer: Parking and arrival instructions will be confirmed closer to the date.
   - question: Where should I stay?
-    answer: Look around Craven Arms, Ludlow and Church Stretton.
+    answer: Look around Craven Arms, Ludlow and Bridgnorth.
 ---

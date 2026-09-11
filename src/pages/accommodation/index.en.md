@@ -4,7 +4,7 @@ title: Accommodation
 image: /img/tom-emma-hero.jpg
 subheading: Where to stay
 description: There are hotels, inns, cottages and guest houses across the surrounding Shropshire countryside. We recommend booking early.
-information: Search around Diddlebury, Craven Arms, Ludlow and Church Stretton. Please check taxi availability before booking if you do not plan to drive.
+information: Search around Diddlebury, Craven Arms, Ludlow and Bridgnorth. Please check taxi availability before booking if you do not plan to drive.
 listTitle: Nearby
 listSubtitle: areas
 accommodations:
@@ -13,9 +13,9 @@ accommodations:
     description: A historic market town with hotels, inns, guest houses and restaurants.
     url: https://www.google.com/maps/search/hotels+Ludlow
   - img: /img/tom-emma-mallorca.jpg
-    name: Church Stretton
+    name: Bridgnorth
     description: A scenic Shropshire town with independent accommodation and countryside stays.
-    url: https://www.google.com/maps/search/hotels+Church+Stretton
+    url: https://www.google.com/maps/search/hotels+Bridgnorth
   - img: /img/tom-emma-rome.jpg
     name: Craven Arms
     description: One of the closest areas to the venue, with local inns, cottages and small hotels.
