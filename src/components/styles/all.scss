@@ -428,7 +428,16 @@ body { background: var(--wedding-ivory); color: var(--wedding-ink); }
   mask-image: linear-gradient(to bottom, #000 65%, transparent);
 }
 .wedding-intro::before { top: 0; left: 0; background-position: left top; }
-.wedding-intro::after { top: 0; right: 0; background-position: right top; }
+.wedding-intro::after {
+  top: 0;
+  right: 0;
+  background-position: right top;
+  // Fade the inner crop edge while retaining the flowers at the screen edge.
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 45%), linear-gradient(to bottom, #000 65%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent, #000 45%), linear-gradient(to bottom, #000 65%, transparent);
+  mask-composite: intersect;
+}
 .wedding-intro h1 {
   font-family: Georgia, "Times New Roman", serif;
   font-weight: 400;
@@ -446,7 +455,7 @@ body { background: var(--wedding-ivory); color: var(--wedding-ink); }
 .wedding-page .button.is-primary { background: var(--wedding-gold); color: #fff; border-color: transparent; }
 .wedding-page .button.is-primary:hover { background: #6d4b20; }
 .wedding-page a:focus-visible, .wedding-nav a:focus-visible { outline-color: #725329; }
-.venue-photo { margin: 0 0 2.5rem; }
+.venue-photo { max-width: 820px; margin: 0 auto 2.5rem; }
 .venue-photo img { display: block; width: 100%; height: auto; border-radius: 0.5rem; }
 #accommodation { background: var(--wedding-blue); }
 .stay-card { background: var(--wedding-ivory); border-color: var(--wedding-line); }

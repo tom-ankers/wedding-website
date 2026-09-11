@@ -74,11 +74,11 @@ export default function IndexPage({ data }) {
             </h2>
             <figure className="venue-photo">
               <img
-                src={withPrefix("/img/delbury-hall-aerial.png")}
-                alt="Aerial view of Delbury Hall, its wedding barns, lakes and surrounding countryside"
+                src={withPrefix("/img/delbury-hall-watercolour.png")}
+                alt="Watercolour aerial illustration of Delbury Hall, its wedding barns, lakes and surrounding countryside"
                 loading="lazy"
-                width="2500"
-                height="1406"
+                width="1672"
+                height="940"
               />
             </figure>
             <div className="columns is-variable is-6">
