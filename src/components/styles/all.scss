@@ -432,10 +432,11 @@ body { background: var(--wedding-ivory); color: var(--wedding-ink); }
   top: 0;
   right: 0;
   background-position: right top;
-  // Fade the inner crop edge while retaining the flowers at the screen edge.
-  -webkit-mask-image: linear-gradient(to right, transparent, #000 45%), linear-gradient(to bottom, #000 65%, transparent);
+  // Show only the right floral cluster, excluding leaves from the opposite corner.
+  width: 210px;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 12%), linear-gradient(to bottom, #000 65%, transparent);
   -webkit-mask-composite: source-in;
-  mask-image: linear-gradient(to right, transparent, #000 45%), linear-gradient(to bottom, #000 65%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 12%), linear-gradient(to bottom, #000 65%, transparent);
   mask-composite: intersect;
 }
 .wedding-intro h1 {
@@ -461,7 +462,7 @@ body { background: var(--wedding-ivory); color: var(--wedding-ink); }
 .stay-card { background: var(--wedding-ivory); border-color: var(--wedding-line); }
 #taxis .stay-card { background: var(--wedding-sage); }
 .wedding-gifts { position: relative; isolation: isolate; background: var(--wedding-blush); overflow: hidden; }
-.wedding-gifts::after { right: -60px; bottom: -50px; background-position: right top; opacity: 0.45; transform: rotate(180deg); }
+.wedding-gifts::after { left: 0; bottom: -50px; background-position: right top; opacity: 0.45; transform: rotate(180deg); }
 .wedding-gifts .container { position: relative; }
 .rsvp-simple-form { background: #fffaf5; color: var(--wedding-ink); border: 1px solid var(--wedding-line); box-shadow: 0 8px 28px rgba(137, 97, 39, 0.07); }
 .rsvp-simple-form .label, .rsvp-simple-form .help { color: var(--wedding-ink); }
@@ -473,5 +474,6 @@ footer.footer { background: var(--wedding-sage); color: #59654f; border-top: 1px
 @media (max-width: 768px) {
   .wedding-intro { padding-top: 9rem; }
   .wedding-intro::before, .wedding-intro::after { width: 45vw; height: 145px; background-size: 340px auto; }
+  .wedding-intro::after { width: 115px; }
   .wedding-gifts::after { opacity: 0.18; }
 }

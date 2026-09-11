@@ -46,13 +46,13 @@ export default function IndexPage({ data }) {
           </a>
         </header>
         <div className="couple-photos" aria-label="Photos of Tom and Emma">
-          {["mallorca", "rome", "holiday"].map((photo) => (
+          {["mallorca", "wisteria", "holiday"].map((photo) => (
             <img
               key={photo}
               src={withPrefix(`/img/tom-emma-${photo}.jpg`)}
               alt={`Tom and Emma ${
-                photo === "rome"
-                  ? "in Rome"
+                photo === "wisteria"
+                  ? "beneath flowering wisteria"
                   : photo === "mallorca"
                   ? "in Mallorca"
                   : "on holiday"
