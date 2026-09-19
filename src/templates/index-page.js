@@ -56,18 +56,21 @@ function VenueReveal() {
       const distance = Math.max(reveal.offsetHeight - window.innerHeight, 1);
       const progress = Math.min(Math.max(-bounds.top / distance, 0), 1);
       reveal.style.setProperty("--reveal-progress", progress.toFixed(3));
-      reveal.style.setProperty("--venue-scale", (0.92 + progress * 0.22).toFixed(3));
+      reveal.style.setProperty("--venue-scale", (1.03 + progress * 0.15).toFixed(3));
       reveal.style.setProperty(
         "--venue-filter",
-        `saturate(${(0.75 + progress * 0.3).toFixed(3)})`
+        `saturate(${(0.9 + progress * 0.1).toFixed(3)})`
       );
-      reveal.style.setProperty("--floral-opacity", Math.max(1 - progress * 1.3, 0).toFixed(3));
-      reveal.style.setProperty("--floral-scale", (1 + progress * 0.18).toFixed(3));
-      const copyOpacity = Math.min(Math.max((progress - 0.35) * 2.2, 0), 1);
+      reveal.style.setProperty(
+        "--floral-opacity",
+        Math.max(0.98 - progress * 0.62, 0.36).toFixed(3)
+      );
+      reveal.style.setProperty("--floral-scale", (1 + progress * 0.22).toFixed(3));
+      const copyOpacity = Math.min(0.12 + progress * 2.4, 1);
       reveal.style.setProperty("--copy-opacity", copyOpacity.toFixed(3));
       reveal.style.setProperty("--copy-shift", `${((1 - copyOpacity) * 2).toFixed(2)}rem`);
       reveal.style.setProperty("--cue-opacity", Math.max(1 - progress * 3, 0).toFixed(3));
-      reveal.style.setProperty("--shade-opacity", (0.75 - progress * 0.28).toFixed(3));
+      reveal.style.setProperty("--shade-opacity", (0.55 - progress * 0.16).toFixed(3));
     };
     const requestUpdate = () => {
       if (!frame) frame = window.requestAnimationFrame(update);
@@ -101,14 +104,15 @@ function VenueReveal() {
         <div className="venue-reveal__shade" aria-hidden="true" />
         <img
           className="venue-reveal__floral"
-          src={withPrefix("/img/save-the-date-florals.jpg")}
+          src={withPrefix("/img/watercolor-floral-frame.png")}
           alt=""
           aria-hidden="true"
+          width="1656"
+          height="950"
         />
         <div className="venue-reveal__copy">
           <p className="wedding-eyebrow">Where we’ll celebrate</p>
           <h2 id="venue-reveal-title">The Barns at Delbury Hall</h2>
-          <p>Scroll through the flowers to arrive in the Shropshire hills.</p>
         </div>
         <span className="venue-reveal__cue" aria-hidden="true">
           <span />

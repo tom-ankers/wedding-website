@@ -28,12 +28,12 @@ $black: #2b2523;
 }
 
 html {
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 body {
   position: relative;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 body * {
@@ -487,20 +487,15 @@ footer.footer { background: var(--wedding-sage); color: #59654f; border-top: 1px
   background: linear-gradient(180deg, var(--wedding-ivory), #fffaf5 60%, var(--wedding-blush));
 }
 
-.order-section::before,
-.order-section::after {
+.order-section::before {
   content: "";
   position: absolute;
-  width: min(30vw, 280px);
-  aspect-ratio: 2 / 3;
-  background: url("../../../static/img/save-the-date-florals.jpg") center / cover no-repeat;
-  opacity: 0.2;
+  inset: 0;
+  background: url("../../../static/img/watercolor-floral-frame.png") center / cover no-repeat;
+  opacity: 0.16;
   pointer-events: none;
   mix-blend-mode: multiply;
 }
-
-.order-section::before { left: -7rem; top: 3rem; transform: rotate(-10deg); }
-.order-section::after { right: -7rem; bottom: 1rem; transform: rotate(170deg); }
 
 .order-section .container { position: relative; z-index: 1; max-width: 760px; }
 .order-section h2 { margin-bottom: 3rem; }
@@ -556,14 +551,14 @@ footer.footer { background: var(--wedding-sage); color: #59654f; border-top: 1px
 
 .venue-reveal {
   --reveal-progress: 0;
-  --venue-scale: 0.92;
-  --venue-filter: saturate(0.75);
-  --floral-opacity: 1;
+  --venue-scale: 1.03;
+  --venue-filter: saturate(0.9);
+  --floral-opacity: 0.98;
   --floral-scale: 1;
-  --copy-opacity: 0;
-  --copy-shift: 2rem;
+  --copy-opacity: 1;
+  --copy-shift: 0;
   --cue-opacity: 1;
-  --shade-opacity: 0.75;
+  --shade-opacity: 0.55;
   position: relative;
   height: 230vh;
   min-height: 76rem;
@@ -574,6 +569,7 @@ footer.footer { background: var(--wedding-sage); color: #59654f; border-top: 1px
   position: sticky;
   top: 0;
   height: 100vh;
+  height: 100svh;
   min-height: 34rem;
   overflow: hidden;
   display: grid;
@@ -594,7 +590,7 @@ footer.footer { background: var(--wedding-sage); color: #59654f; border-top: 1px
   object-position: center;
   transform: scale(var(--venue-scale));
   filter: var(--venue-filter);
-  will-change: transform;
+  will-change: transform, filter;
 }
 
 .venue-reveal__shade {
@@ -607,12 +603,11 @@ footer.footer { background: var(--wedding-sage); color: #59654f; border-top: 1px
   z-index: 2;
   width: 100%;
   object-fit: cover;
-  object-position: center 42%;
+  object-position: center;
   opacity: var(--floral-opacity);
-  filter: saturate(0.8) brightness(1.05);
-  box-shadow: 0 0 5rem rgba(20, 30, 22, 0.28);
   transform: scale(var(--floral-scale));
   will-change: transform, opacity;
+  pointer-events: none;
 }
 
 .venue-reveal__copy {
@@ -660,7 +655,7 @@ footer.footer { background: var(--wedding-sage); color: #59654f; border-top: 1px
 }
 
 @media (max-width: 600px) {
-  .order-section::before, .order-section::after { width: 48vw; opacity: 0.12; }
+  .order-section::before { background-size: auto 100%; opacity: 0.12; }
   .day-timeline::before { left: 5px; }
   .day-timeline li { grid-template-columns: 1.1rem 6rem 1fr; gap: 0.75rem; min-height: 5.75rem; }
   .day-timeline time { grid-column: 2; grid-row: 1; text-align: left; }
