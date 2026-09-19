@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { graphql, withPrefix } from "gatsby";
 import Layout from "../components/Layout";
 import RsvpForm from "../components/RsvpForm";
@@ -27,6 +27,96 @@ const taxis = [
     url: "https://www.ludlow.org.uk/businessdetail.asp?BusID=1571",
   },
 ];
+
+const orderOfTheDay = [
+  { time: "1:30 pm", dateTime: "13:30", label: "Arrival" },
+  { time: "2:00 pm", dateTime: "14:00", label: "Ceremony begins" },
+  { time: "2:30 pm", dateTime: "14:30", label: "Drinks reception" },
+  {
+    time: "4:30 pm",
+    dateTime: "16:30",
+    label: "Wedding breakfast & speeches",
+  },
+  { time: "7:30 pm", dateTime: "19:30", label: "Evening reception" },
+];
+
+function VenueReveal() {
+  const revealRef = useRef(null);
+
+  useEffect(() => {
+    const reveal = revealRef.current;
+    if (!reveal || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return undefined;
+    }
+
+    let frame;
+    const update = () => {
+      frame = undefined;
+      const bounds = reveal.getBoundingClientRect();
+      const distance = Math.max(reveal.offsetHeight - window.innerHeight, 1);
+      const progress = Math.min(Math.max(-bounds.top / distance, 0), 1);
+      reveal.style.setProperty("--reveal-progress", progress.toFixed(3));
+      reveal.style.setProperty("--venue-scale", (0.92 + progress * 0.22).toFixed(3));
+      reveal.style.setProperty(
+        "--venue-filter",
+        `saturate(${(0.75 + progress * 0.3).toFixed(3)})`
+      );
+      reveal.style.setProperty("--floral-opacity", Math.max(1 - progress * 1.3, 0).toFixed(3));
+      reveal.style.setProperty("--floral-scale", (1 + progress * 0.18).toFixed(3));
+      const copyOpacity = Math.min(Math.max((progress - 0.35) * 2.2, 0), 1);
+      reveal.style.setProperty("--copy-opacity", copyOpacity.toFixed(3));
+      reveal.style.setProperty("--copy-shift", `${((1 - copyOpacity) * 2).toFixed(2)}rem`);
+      reveal.style.setProperty("--cue-opacity", Math.max(1 - progress * 3, 0).toFixed(3));
+      reveal.style.setProperty("--shade-opacity", (0.75 - progress * 0.28).toFixed(3));
+    };
+    const requestUpdate = () => {
+      if (!frame) frame = window.requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", requestUpdate);
+    return () => {
+      window.removeEventListener("scroll", requestUpdate);
+      window.removeEventListener("resize", requestUpdate);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, []);
+
+  return (
+    <section
+      ref={revealRef}
+      className="venue-reveal"
+      aria-labelledby="venue-reveal-title"
+    >
+      <div className="venue-reveal__sticky">
+        <img
+          className="venue-reveal__image"
+          src={withPrefix("/img/delbury-hall-aerial.png")}
+          alt="Aerial view of The Barns at Delbury Hall and the surrounding Shropshire countryside"
+          loading="lazy"
+          width="2500"
+          height="1406"
+        />
+        <div className="venue-reveal__shade" aria-hidden="true" />
+        <img
+          className="venue-reveal__floral"
+          src={withPrefix("/img/save-the-date-florals.jpg")}
+          alt=""
+          aria-hidden="true"
+        />
+        <div className="venue-reveal__copy">
+          <p className="wedding-eyebrow">Where we’ll celebrate</p>
+          <h2 id="venue-reveal-title">The Barns at Delbury Hall</h2>
+          <p>Scroll through the flowers to arrive in the Shropshire hills.</p>
+        </div>
+        <span className="venue-reveal__cue" aria-hidden="true">
+          <span />
+        </span>
+      </div>
+    </section>
+  );
+}
 
 export default function IndexPage({ data }) {
   const home = data.home.frontmatter;
@@ -63,6 +153,31 @@ export default function IndexPage({ data }) {
             />
           ))}
         </div>
+        <section
+          id="order"
+          className="section wedding-section order-section"
+          aria-labelledby="order-title"
+        >
+          <div className="container has-text-centered">
+            <p className="wedding-eyebrow">Tuesday · 17 August 2027</p>
+            <h2 id="order-title" className="title is-size-3">
+              Order of the day
+            </h2>
+            <ol className="day-timeline">
+              {orderOfTheDay.map((event, index) => (
+                <li
+                  key={event.dateTime}
+                  style={{ "--event-rotation": `${45 + index * 18}deg` }}
+                >
+                  <time dateTime={event.dateTime}>{event.time}</time>
+                  <span className="day-timeline__flower" aria-hidden="true" />
+                  <span className="day-timeline__label">{event.label}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+        <VenueReveal />
         <section
           id="venue"
           className="section wedding-section"

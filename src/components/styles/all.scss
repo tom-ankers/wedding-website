@@ -477,3 +477,206 @@ footer.footer { background: var(--wedding-sage); color: #59654f; border-top: 1px
   .wedding-intro::after { width: 115px; }
   .wedding-gifts::after { opacity: 0.18; }
 }
+
+/* Order of the day and scroll-led venue reveal */
+.order-section {
+  position: relative;
+  overflow: hidden;
+  padding-top: clamp(4.5rem, 8vw, 7rem);
+  padding-bottom: clamp(5rem, 10vw, 8rem);
+  background: linear-gradient(180deg, var(--wedding-ivory), #fffaf5 60%, var(--wedding-blush));
+}
+
+.order-section::before,
+.order-section::after {
+  content: "";
+  position: absolute;
+  width: min(30vw, 280px);
+  aspect-ratio: 2 / 3;
+  background: url("../../../static/img/save-the-date-florals.jpg") center / cover no-repeat;
+  opacity: 0.2;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
+.order-section::before { left: -7rem; top: 3rem; transform: rotate(-10deg); }
+.order-section::after { right: -7rem; bottom: 1rem; transform: rotate(170deg); }
+
+.order-section .container { position: relative; z-index: 1; max-width: 760px; }
+.order-section h2 { margin-bottom: 3rem; }
+
+.day-timeline {
+  position: relative;
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+}
+
+.day-timeline::before {
+  content: "";
+  position: absolute;
+  left: calc(36% + 0.4rem);
+  top: 1rem;
+  bottom: 1rem;
+  width: 1px;
+  background: linear-gradient(transparent, var(--wedding-gold) 10%, var(--wedding-gold) 90%, transparent);
+  opacity: 0.45;
+}
+
+.day-timeline li {
+  display: grid;
+  grid-template-columns: 36% 1.25rem 1fr;
+  align-items: center;
+  gap: 1.25rem;
+  min-height: 5.25rem;
+}
+
+.day-timeline time {
+  color: var(--wedding-gold);
+  font: 1.15rem Georgia, "Times New Roman", serif;
+  text-align: right;
+  letter-spacing: 0.04em;
+}
+
+.day-timeline__flower {
+  position: relative;
+  z-index: 1;
+  width: 1.05rem;
+  height: 1.05rem;
+  border: 2px solid #fffaf5;
+  border-radius: 50% 0 50% 50%;
+  background: var(--wedding-gold);
+  transform: rotate(var(--event-rotation));
+  box-shadow: 0 0 0 1px rgba(137, 97, 39, 0.35);
+}
+
+.day-timeline__label { font-size: clamp(1.05rem, 2vw, 1.25rem); }
+
+.venue-reveal {
+  --reveal-progress: 0;
+  --venue-scale: 0.92;
+  --venue-filter: saturate(0.75);
+  --floral-opacity: 1;
+  --floral-scale: 1;
+  --copy-opacity: 0;
+  --copy-shift: 2rem;
+  --cue-opacity: 1;
+  --shade-opacity: 0.75;
+  position: relative;
+  height: 230vh;
+  min-height: 76rem;
+  background: #253226;
+}
+
+.venue-reveal__sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  min-height: 34rem;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+
+.venue-reveal__image,
+.venue-reveal__shade,
+.venue-reveal__floral {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.venue-reveal__image {
+  object-fit: cover;
+  object-position: center;
+  transform: scale(var(--venue-scale));
+  filter: var(--venue-filter);
+  will-change: transform;
+}
+
+.venue-reveal__shade {
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(20, 30, 22, 0.18), rgba(20, 30, 22, 0.52));
+  opacity: var(--shade-opacity);
+}
+
+.venue-reveal__floral {
+  z-index: 2;
+  width: 100%;
+  object-fit: cover;
+  object-position: center 42%;
+  opacity: var(--floral-opacity);
+  filter: saturate(0.8) brightness(1.05);
+  box-shadow: 0 0 5rem rgba(20, 30, 22, 0.28);
+  transform: scale(var(--floral-scale));
+  will-change: transform, opacity;
+}
+
+.venue-reveal__copy {
+  position: relative;
+  z-index: 3;
+  width: min(90vw, 760px);
+  padding: 2rem;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 2px 16px rgba(18, 28, 20, 0.75);
+  opacity: var(--copy-opacity);
+  transform: translateY(var(--copy-shift));
+}
+
+.venue-reveal__copy .wedding-eyebrow { color: #fff7e9; }
+.venue-reveal__copy h2 {
+  margin: 0.5rem 0 1rem;
+  color: #fff;
+  font: 400 clamp(2.5rem, 7vw, 5.5rem)/1.05 Georgia, "Times New Roman", serif;
+}
+.venue-reveal__copy p:last-child { font-size: 1.05rem; }
+
+.venue-reveal__cue {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  bottom: 2rem;
+  width: 1px;
+  height: 3rem;
+  overflow: hidden;
+  background: rgba(255,255,255,0.3);
+  opacity: var(--cue-opacity);
+}
+.venue-reveal__cue span {
+  display: block;
+  width: 100%;
+  height: 45%;
+  background: #fff;
+  animation: venue-scroll-cue 1.8s ease-in-out infinite;
+}
+
+@keyframes venue-scroll-cue {
+  from { transform: translateY(-120%); }
+  to { transform: translateY(240%); }
+}
+
+@media (max-width: 600px) {
+  .order-section::before, .order-section::after { width: 48vw; opacity: 0.12; }
+  .day-timeline::before { left: 5px; }
+  .day-timeline li { grid-template-columns: 1.1rem 6rem 1fr; gap: 0.75rem; min-height: 5.75rem; }
+  .day-timeline time { grid-column: 2; grid-row: 1; text-align: left; }
+  .day-timeline__flower { grid-column: 1; grid-row: 1; width: 0.8rem; height: 0.8rem; }
+  .day-timeline__label { grid-column: 3; grid-row: 1; }
+  .venue-reveal { height: 190vh; min-height: 62rem; }
+  .venue-reveal__image { object-position: 56% center; }
+  .venue-reveal__floral { object-position: center; }
+  .venue-reveal__copy { padding: 1.25rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .venue-reveal { height: 85vh; min-height: 34rem; }
+  .venue-reveal__sticky { position: relative; height: 100%; }
+  .venue-reveal__image { transform: scale(1); filter: none; }
+  .venue-reveal__floral { display: none; }
+  .venue-reveal__copy { opacity: 1; transform: none; }
+  .venue-reveal__cue { display: none; }
+}

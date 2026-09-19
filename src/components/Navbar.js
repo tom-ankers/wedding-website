@@ -28,7 +28,14 @@ export default function Navbar() {
           className={`navbar-menu ${active ? "is-active" : ""}`}
         >
           <div className="navbar-end has-text-centered">
-            {["Venue", "Accommodation", "Taxis", "Gifts", "RSVP"].map(
+            {[
+              "Order",
+              "Venue",
+              "Accommodation",
+              "Taxis",
+              "Gifts",
+              "RSVP",
+            ].map(
               (label) => (
                 <a
                   key={label}
