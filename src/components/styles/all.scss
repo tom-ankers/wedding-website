@@ -415,7 +415,7 @@ body { background: var(--wedding-ivory); color: var(--wedding-ink); }
   background: var(--wedding-ivory);
   padding: 6rem 1.5rem 4rem;
 }
-.wedding-intro::before, .wedding-intro::after, .wedding-gifts::after {
+.wedding-intro::before, .wedding-intro::after {
   content: "";
   position: absolute;
   pointer-events: none;
@@ -461,9 +461,15 @@ body { background: var(--wedding-ivory); color: var(--wedding-ink); }
 #accommodation { background: var(--wedding-blue); }
 .stay-card { background: var(--wedding-ivory); border-color: var(--wedding-line); }
 #taxis .stay-card { background: var(--wedding-sage); }
-.wedding-gifts { position: relative; isolation: isolate; background: var(--wedding-blush); overflow: hidden; }
-.wedding-gifts::after { left: 0; bottom: -50px; background-position: right top; opacity: 0.45; transform: rotate(180deg); }
-.wedding-gifts .container { position: relative; }
+.wedding-gifts {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding-top: clamp(4.5rem, 8vw, 7rem);
+  padding-bottom: clamp(4.5rem, 8vw, 7rem);
+  background: linear-gradient(180deg, var(--wedding-ivory), #fffaf5 50%, var(--wedding-blush));
+}
+.wedding-gifts .container { position: relative; z-index: 1; }
 .rsvp-simple-form { background: #fffaf5; color: var(--wedding-ink); border: 1px solid var(--wedding-line); box-shadow: 0 8px 28px rgba(137, 97, 39, 0.07); }
 .rsvp-simple-form .label, .rsvp-simple-form .help { color: var(--wedding-ink); }
 .rsvp-simple-form .input, .rsvp-simple-form .textarea { background: #fffdf9; border-color: #a99b85; color: var(--wedding-ink); }
@@ -475,7 +481,6 @@ footer.footer { background: var(--wedding-sage); color: #59654f; border-top: 1px
   .wedding-intro { padding-top: 9rem; }
   .wedding-intro::before, .wedding-intro::after { width: 45vw; height: 145px; background-size: 340px auto; }
   .wedding-intro::after { width: 115px; }
-  .wedding-gifts::after { opacity: 0.18; }
 }
 
 /* Order of the day and scroll-led venue reveal */
@@ -488,7 +493,9 @@ footer.footer { background: var(--wedding-sage); color: #59654f; border-top: 1px
 }
 
 .order-section::before,
-.order-section::after {
+.order-section::after,
+.wedding-gifts::before,
+.wedding-gifts::after {
   content: "";
   position: absolute;
   top: 3rem;
@@ -502,14 +509,16 @@ footer.footer { background: var(--wedding-sage); color: #59654f; border-top: 1px
   mix-blend-mode: multiply;
 }
 
-.order-section::before {
+.order-section::before,
+.wedding-gifts::before {
   left: clamp(1.5rem, 3vw, 3rem);
   background-position: left center;
   -webkit-mask-image: linear-gradient(to right, #000 48%, transparent 100%);
   mask-image: linear-gradient(to right, #000 48%, transparent 100%);
 }
 
-.order-section::after {
+.order-section::after,
+.wedding-gifts::after {
   right: clamp(1.5rem, 3vw, 3rem);
   background-position: right center;
   -webkit-mask-image: linear-gradient(to left, #000 48%, transparent 100%);
@@ -686,7 +695,10 @@ footer.footer { background: var(--wedding-sage); color: #59654f; border-top: 1px
 }
 
 @media (max-width: 600px) {
-  .order-section::before, .order-section::after { top: 2rem; bottom: 2rem; width: 44vw; opacity: 0.14; }
+  .order-section::before,
+  .order-section::after,
+  .wedding-gifts::before,
+  .wedding-gifts::after { top: 2rem; bottom: 2rem; width: 44vw; opacity: 0.14; }
   .day-timeline::before { left: 5px; }
   .day-timeline li { grid-template-columns: 1.1rem 6rem 1fr; gap: 0.75rem; min-height: 5.75rem; }
   .day-timeline time { grid-column: 2; grid-row: 1; text-align: left; }
@@ -694,7 +706,10 @@ footer.footer { background: var(--wedding-sage); color: #59654f; border-top: 1px
   .day-timeline__label { grid-column: 3; grid-row: 1; }
   .venue-reveal { height: 205svh; min-height: 68rem; background: var(--wedding-ivory); }
   .venue-reveal__sticky { min-height: 100svh; }
-  .venue-reveal__image { object-position: 58% center; }
+  .venue-reveal__image {
+    object-fit: contain;
+    object-position: center;
+  }
   .venue-reveal__floral img { object-position: center; }
   .venue-reveal__copy { padding: 1.25rem; }
 }

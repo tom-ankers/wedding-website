@@ -55,8 +55,12 @@ function VenueReveal() {
       const bounds = reveal.getBoundingClientRect();
       const distance = Math.max(reveal.offsetHeight - window.innerHeight, 1);
       const progress = Math.min(Math.max(-bounds.top / distance, 0), 1);
+      const isPortraitMobile = window.matchMedia("(max-width: 600px)").matches;
       reveal.style.setProperty("--reveal-progress", progress.toFixed(3));
-      reveal.style.setProperty("--venue-scale", (1.08 + progress * 0.3).toFixed(3));
+      reveal.style.setProperty(
+        "--venue-scale",
+        (isPortraitMobile ? 1 : 1.08 + progress * 0.3).toFixed(3)
+      );
       reveal.style.setProperty(
         "--venue-filter",
         `saturate(${(0.9 + progress * 0.1).toFixed(3)})`
@@ -115,9 +119,7 @@ function VenueReveal() {
           />
         </picture>
         <div className="venue-reveal__copy">
-          <p className="wedding-eyebrow">Where we’ll celebrate</p>
           <h2 id="venue-reveal-title">The Barns at Delbury Hall</h2>
-          <p className="venue-reveal__date">Tuesday · 17 August 2027</p>
         </div>
         <span className="venue-reveal__cue" aria-hidden="true">
           <span />
@@ -317,9 +319,6 @@ export default function IndexPage({ data }) {
               Whether it goes towards a special dinner, a day exploring or a new
               experience together, you’ll be helping us make wonderful memories.
               There is absolutely no expectation to contribute.
-            </p>
-            <p className="mt-3">
-              Please get in touch with us if you’d like to contribute.
             </p>
           </div>
         </section>

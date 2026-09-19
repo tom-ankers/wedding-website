@@ -28,7 +28,6 @@ export default function Countdown() {
   }, []);
   return (
     <div className="wedding-countdown">
-      <p className="wedding-eyebrow">Counting down to 17 August 2027</p>
       <p className="counter" role="timer" aria-label="Time until our wedding">
         {countdown || "17 August 2027"}
       </p>
