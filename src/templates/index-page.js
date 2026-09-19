@@ -56,17 +56,17 @@ function VenueReveal() {
       const distance = Math.max(reveal.offsetHeight - window.innerHeight, 1);
       const progress = Math.min(Math.max(-bounds.top / distance, 0), 1);
       reveal.style.setProperty("--reveal-progress", progress.toFixed(3));
-      reveal.style.setProperty("--venue-scale", (1.03 + progress * 0.15).toFixed(3));
+      reveal.style.setProperty("--venue-scale", (1.08 + progress * 0.3).toFixed(3));
       reveal.style.setProperty(
         "--venue-filter",
         `saturate(${(0.9 + progress * 0.1).toFixed(3)})`
       );
       reveal.style.setProperty(
         "--floral-opacity",
-        Math.max(0.98 - progress * 0.62, 0.36).toFixed(3)
+        Math.max(1 - progress * 0.78, 0.22).toFixed(3)
       );
-      reveal.style.setProperty("--floral-scale", (1 + progress * 0.22).toFixed(3));
-      const copyOpacity = Math.min(0.12 + progress * 2.4, 1);
+      reveal.style.setProperty("--floral-scale", (1 + progress * 0.46).toFixed(3));
+      const copyOpacity = Math.min(Math.max((progress - 0.12) * 2.8, 0), 1);
       reveal.style.setProperty("--copy-opacity", copyOpacity.toFixed(3));
       reveal.style.setProperty("--copy-shift", `${((1 - copyOpacity) * 2).toFixed(2)}rem`);
       reveal.style.setProperty("--cue-opacity", Math.max(1 - progress * 3, 0).toFixed(3));
@@ -95,24 +95,29 @@ function VenueReveal() {
       <div className="venue-reveal__sticky">
         <img
           className="venue-reveal__image"
-          src={withPrefix("/img/delbury-hall-aerial.png")}
-          alt="Aerial view of The Barns at Delbury Hall and the surrounding Shropshire countryside"
+          src={withPrefix("/img/delbury-hall-watercolour.png")}
+          alt="Watercolour aerial illustration of Delbury Hall, its wedding barns, lakes and surrounding countryside"
           loading="lazy"
-          width="2500"
-          height="1406"
+          width="1672"
+          height="940"
         />
         <div className="venue-reveal__shade" aria-hidden="true" />
-        <img
-          className="venue-reveal__floral"
-          src={withPrefix("/img/watercolor-floral-frame.png")}
-          alt=""
-          aria-hidden="true"
-          width="1656"
-          height="950"
-        />
+        <picture className="venue-reveal__floral">
+          <source
+            media="(max-width: 600px)"
+            srcSet={withPrefix("/img/watercolor-floral-frame-mobile.png")}
+          />
+          <img
+            src={withPrefix("/img/watercolor-floral-frame.png")}
+            alt=""
+            width="1656"
+            height="950"
+          />
+        </picture>
         <div className="venue-reveal__copy">
           <p className="wedding-eyebrow">Where we’ll celebrate</p>
           <h2 id="venue-reveal-title">The Barns at Delbury Hall</h2>
+          <p className="venue-reveal__date">Tuesday · 17 August 2027</p>
         </div>
         <span className="venue-reveal__cue" aria-hidden="true">
           <span />
@@ -191,15 +196,6 @@ export default function IndexPage({ data }) {
             <h2 id="venue-title" className="title is-size-3">
               Venue
             </h2>
-            <figure className="venue-photo">
-              <img
-                src={withPrefix("/img/delbury-hall-watercolour.png")}
-                alt="Watercolour aerial illustration of Delbury Hall, its wedding barns, lakes and surrounding countryside"
-                loading="lazy"
-                width="1672"
-                height="940"
-              />
-            </figure>
             <div className="columns is-variable is-6">
               <div className="column is-5">
                 <h3 className="title is-size-4">{venue.title}</h3>

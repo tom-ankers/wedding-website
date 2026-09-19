@@ -487,14 +487,33 @@ footer.footer { background: var(--wedding-sage); color: #59654f; border-top: 1px
   background: linear-gradient(180deg, var(--wedding-ivory), #fffaf5 60%, var(--wedding-blush));
 }
 
-.order-section::before {
+.order-section::before,
+.order-section::after {
   content: "";
   position: absolute;
-  inset: 0;
-  background: url("../../../static/img/watercolor-floral-frame.png") center / cover no-repeat;
-  opacity: 0.16;
+  top: 3rem;
+  bottom: 3rem;
+  width: min(34vw, 560px);
+  background-image: url("../../../static/img/watercolor-floral-frame.png");
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  opacity: 0.18;
   pointer-events: none;
   mix-blend-mode: multiply;
+}
+
+.order-section::before {
+  left: clamp(1.5rem, 3vw, 3rem);
+  background-position: left center;
+  -webkit-mask-image: linear-gradient(to right, #000 48%, transparent 100%);
+  mask-image: linear-gradient(to right, #000 48%, transparent 100%);
+}
+
+.order-section::after {
+  right: clamp(1.5rem, 3vw, 3rem);
+  background-position: right center;
+  -webkit-mask-image: linear-gradient(to left, #000 48%, transparent 100%);
+  mask-image: linear-gradient(to left, #000 48%, transparent 100%);
 }
 
 .order-section .container { position: relative; z-index: 1; max-width: 760px; }
@@ -551,7 +570,7 @@ footer.footer { background: var(--wedding-sage); color: #59654f; border-top: 1px
 
 .venue-reveal {
   --reveal-progress: 0;
-  --venue-scale: 1.03;
+  --venue-scale: 1.08;
   --venue-filter: saturate(0.9);
   --floral-opacity: 0.98;
   --floral-scale: 1;
@@ -587,7 +606,7 @@ footer.footer { background: var(--wedding-sage); color: #59654f; border-top: 1px
 
 .venue-reveal__image {
   object-fit: cover;
-  object-position: center;
+  object-position: center 48%;
   transform: scale(var(--venue-scale));
   filter: var(--venue-filter);
   will-change: transform, filter;
@@ -595,19 +614,25 @@ footer.footer { background: var(--wedding-sage); color: #59654f; border-top: 1px
 
 .venue-reveal__shade {
   z-index: 1;
-  background: linear-gradient(180deg, rgba(20, 30, 22, 0.18), rgba(20, 30, 22, 0.52));
+  background: radial-gradient(circle at center, rgba(252, 247, 239, 0.42), rgba(111, 96, 69, 0.14) 68%);
   opacity: var(--shade-opacity);
 }
 
 .venue-reveal__floral {
   z-index: 2;
   width: 100%;
-  object-fit: cover;
-  object-position: center;
   opacity: var(--floral-opacity);
   transform: scale(var(--floral-scale));
   will-change: transform, opacity;
   pointer-events: none;
+}
+
+.venue-reveal__floral img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .venue-reveal__copy {
@@ -615,20 +640,26 @@ footer.footer { background: var(--wedding-sage); color: #59654f; border-top: 1px
   z-index: 3;
   width: min(90vw, 760px);
   padding: 2rem;
-  color: #fff;
+  color: var(--wedding-ink);
   text-align: center;
-  text-shadow: 0 2px 16px rgba(18, 28, 20, 0.75);
+  text-shadow: 0 1px 12px rgba(255, 252, 247, 0.95);
   opacity: var(--copy-opacity);
   transform: translateY(var(--copy-shift));
 }
 
-.venue-reveal__copy .wedding-eyebrow { color: #fff7e9; }
+.venue-reveal__copy .wedding-eyebrow { color: var(--wedding-gold); }
 .venue-reveal__copy h2 {
   margin: 0.5rem 0 1rem;
-  color: #fff;
+  color: #60451f;
   font: 400 clamp(2.5rem, 7vw, 5.5rem)/1.05 Georgia, "Times New Roman", serif;
 }
-.venue-reveal__copy p:last-child { font-size: 1.05rem; }
+.venue-reveal__date {
+  margin-top: 1.25rem;
+  color: #60451f;
+  font: 1rem Georgia, "Times New Roman", serif;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
 
 .venue-reveal__cue {
   position: absolute;
@@ -655,15 +686,16 @@ footer.footer { background: var(--wedding-sage); color: #59654f; border-top: 1px
 }
 
 @media (max-width: 600px) {
-  .order-section::before { background-size: auto 100%; opacity: 0.12; }
+  .order-section::before, .order-section::after { top: 2rem; bottom: 2rem; width: 44vw; opacity: 0.14; }
   .day-timeline::before { left: 5px; }
   .day-timeline li { grid-template-columns: 1.1rem 6rem 1fr; gap: 0.75rem; min-height: 5.75rem; }
   .day-timeline time { grid-column: 2; grid-row: 1; text-align: left; }
   .day-timeline__flower { grid-column: 1; grid-row: 1; width: 0.8rem; height: 0.8rem; }
   .day-timeline__label { grid-column: 3; grid-row: 1; }
-  .venue-reveal { height: 190vh; min-height: 62rem; }
-  .venue-reveal__image { object-position: 56% center; }
-  .venue-reveal__floral { object-position: center; }
+  .venue-reveal { height: 205svh; min-height: 68rem; background: var(--wedding-ivory); }
+  .venue-reveal__sticky { min-height: 100svh; }
+  .venue-reveal__image { object-position: 58% center; }
+  .venue-reveal__floral img { object-position: center; }
   .venue-reveal__copy { padding: 1.25rem; }
 }
 
