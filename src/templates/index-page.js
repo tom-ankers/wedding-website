@@ -55,12 +55,8 @@ function VenueReveal() {
       const bounds = reveal.getBoundingClientRect();
       const distance = Math.max(reveal.offsetHeight - window.innerHeight, 1);
       const progress = Math.min(Math.max(-bounds.top / distance, 0), 1);
-      const isPortraitMobile = window.matchMedia("(max-width: 600px)").matches;
       reveal.style.setProperty("--reveal-progress", progress.toFixed(3));
-      reveal.style.setProperty(
-        "--venue-scale",
-        (isPortraitMobile ? 1 : 1.08 + progress * 0.3).toFixed(3)
-      );
+      reveal.style.setProperty("--venue-scale", (1.08 + progress * 0.3).toFixed(3));
       reveal.style.setProperty(
         "--venue-filter",
         `saturate(${(0.9 + progress * 0.1).toFixed(3)})`

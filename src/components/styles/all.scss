@@ -525,6 +525,17 @@ footer.footer { background: var(--wedding-sage); color: #59654f; border-top: 1px
   mask-image: linear-gradient(to left, #000 48%, transparent 100%);
 }
 
+@media (min-width: 601px) {
+  // Keep the complete frame from shrinking into both sides of the shorter gift panel.
+  .wedding-gifts::before,
+  .wedding-gifts::after {
+    top: 0;
+    bottom: 0;
+    width: min(38vw, 640px);
+    background-size: auto 42rem;
+  }
+}
+
 .order-section .container { position: relative; z-index: 1; max-width: 760px; }
 .order-section h2 { margin-bottom: 3rem; }
 
@@ -707,8 +718,9 @@ footer.footer { background: var(--wedding-sage); color: #59654f; border-top: 1px
   .venue-reveal { height: 205svh; min-height: 68rem; background: var(--wedding-ivory); }
   .venue-reveal__sticky { min-height: 100svh; }
   .venue-reveal__image {
-    object-fit: contain;
-    object-position: center;
+    object-position: 58% center;
+    -webkit-mask-image: radial-gradient(ellipse 88% 76% at center, #000 58%, rgba(0, 0, 0, 0.92) 72%, transparent 100%);
+    mask-image: radial-gradient(ellipse 88% 76% at center, #000 58%, rgba(0, 0, 0, 0.92) 72%, transparent 100%);
   }
   .venue-reveal__floral img { object-position: center; }
   .venue-reveal__copy { padding: 1.25rem; }
