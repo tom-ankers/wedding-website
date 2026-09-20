@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { withPrefix } from "gatsby";
 import { openInvitation } from "../utils/invitations";
+
+const rsvpEndpoint = "https://submit-form.com/EEkSOgmuc";
 
 export default function RsvpForm() {
   const [code, setCode] = useState("");
@@ -9,11 +11,8 @@ export default function RsvpForm() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  useEffect(() => {
-    setSubmitted(
-      new URLSearchParams(window.location.search).get("submitted") === "true"
-    );
-  }, []);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
   const unlock = async (event) => {
     event.preventDefault();
     setError("");
@@ -26,6 +25,7 @@ export default function RsvpForm() {
       setParty(invitation);
       setCode("");
       setAttendance({});
+      setSubmitted(false);
     } catch (failure) {
       setError(
         failure.message.startsWith("We ") ||
@@ -35,6 +35,40 @@ export default function RsvpForm() {
       );
     } finally {
       setLoading(false);
+    }
+  };
+  const submitRsvp = async (event) => {
+    event.preventDefault();
+    setSubmitError("");
+    setSubmitting(true);
+    const formData = Object.fromEntries(
+      new FormData(event.currentTarget).entries()
+    );
+    try {
+      const response = await fetch(rsvpEndpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          ...formData,
+          _email: {
+            from: "Tom & Emma wedding website",
+            subject: `Wedding RSVP — ${party.name}`,
+          },
+        }),
+      });
+      if (!response.ok) throw new Error("RSVP submission failed");
+      setSubmitted(true);
+      setParty(null);
+      setAttendance({});
+    } catch (failure) {
+      setSubmitError(
+        "We couldn’t send your RSVP. Please check your connection and try again, or contact Tom and Emma."
+      );
+    } finally {
+      setSubmitting(false);
     }
   };
   return (
@@ -88,27 +122,8 @@ export default function RsvpForm() {
       ) : (
         <form
           className="box rsvp-simple-form"
-          action="https://formsubmit.co/thomasjamesankers@gmail.com"
-          method="POST"
+          onSubmit={submitRsvp}
         >
-          <input
-            type="hidden"
-            name="_subject"
-            value={`Wedding RSVP — ${party.name}`}
-          />
-          <input type="hidden" name="_captcha" value="false" />
-          <input
-            type="hidden"
-            name="_next"
-            value="https://tomandemma2027.co.uk/en/?submitted=true#rsvp"
-          />
-          <input
-            type="text"
-            name="_honey"
-            style={{ display: "none" }}
-            tabIndex="-1"
-            autoComplete="off"
-          />
           <input type="hidden" name="Party ID" value={party.id} />
           <input type="hidden" name="Party" value={party.name} />
           <h3 className="title is-size-4">{party.name}</h3>
@@ -202,13 +217,25 @@ export default function RsvpForm() {
               maxLength="2000"
             />
           </div>
+          {submitError && (
+            <p role="alert" className="has-text-danger mb-4">
+              {submitError}
+            </p>
+          )}
           <div className="party-actions">
-            <button className="button is-primary" type="submit">
+            <button
+              className={`button is-primary ${
+                submitting ? "is-loading" : ""
+              }`}
+              disabled={submitting}
+              type="submit"
+            >
               Send RSVP for the whole party
             </button>
             <button
               className="button is-light"
               type="button"
+              disabled={submitting}
               onClick={() => {
                 setParty(null);
                 setAttendance({});
