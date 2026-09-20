@@ -73,12 +73,22 @@ export default function RsvpForm() {
   };
   return (
     <>
-      {submitted && (
-        <p role="status" className="has-text-centered mb-5">
-          Thank you for sending your party’s RSVP.
-        </p>
-      )}
-      {!party ? (
+      {submitted ? (
+        <div className="box rsvp-simple-form has-text-centered" role="status">
+          <h3 className="title is-size-4">Thank you for submitting!</h3>
+          <p>
+            Your party’s RSVP has been received. We can’t wait to celebrate
+            with you.
+          </p>
+          <button
+            className="button is-light mt-4"
+            type="button"
+            onClick={() => setSubmitted(false)}
+          >
+            Submit another party’s RSVP
+          </button>
+        </div>
+      ) : !party ? (
         <form className="box rsvp-simple-form" onSubmit={unlock}>
           <h3 className="title is-size-4">Find your party</h3>
           <p className="mb-4">
