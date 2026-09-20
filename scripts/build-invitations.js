@@ -5,6 +5,7 @@ const root = path.resolve(__dirname, "..");
 const masterPath = path.join(root, "private/guest-list.json");
 const outputPath = path.join(root, "static/invitations");
 const normalize = (code) => code.replace(/[-\s]/g, "").toLowerCase();
+const codeAlphabet = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
 const digest = (purpose, code) =>
   crypto
     .createHash("sha256")
@@ -40,13 +41,24 @@ function validateMaster(master) {
     }
     if (party.code) {
       const code = normalize(party.code);
-      if (!/^[a-f0-9]{32}$/.test(code) || codes.has(code))
+      if (!/^[a-z0-9]{4}$/.test(code) || codes.has(code))
         throw new Error(
-          "Invitation codes must be unique generated 32-character hexadecimal values."
+          "Invitation codes must be unique four-character alphanumeric values."
         );
       codes.add(code);
     }
   }
+}
+function generateCode(codes) {
+  let code;
+  do {
+    code = Array.from(
+      crypto.randomBytes(4),
+      (byte) => codeAlphabet[byte % codeAlphabet.length]
+    ).join("");
+  } while (codes.has(normalize(code)));
+  codes.add(normalize(code));
+  return code;
 }
 function encryptParty(party) {
   const iv = crypto.randomBytes(12);
@@ -81,12 +93,13 @@ function build() {
     throw new Error(
       "Add the confirmed invitee names to private/guest-list.json first."
     );
+  const codes = new Set(
+    master.parties
+      .filter((party) => party.code)
+      .map((party) => normalize(party.code))
+  );
   for (const party of master.parties)
-    party.code ||= crypto
-      .randomBytes(16)
-      .toString("hex")
-      .match(/.{8}/g)
-      .join("-");
+    party.code ||= generateCode(codes);
   const files = master.parties.map(encryptParty);
   fs.writeFileSync(masterPath, JSON.stringify(master, null, 2) + "\n");
   fs.mkdirSync(outputPath, { recursive: true });

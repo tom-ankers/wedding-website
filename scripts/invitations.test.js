@@ -3,7 +3,7 @@ const { validateMaster, encryptParty, digest } = require("./build-invitations");
 const party = {
   id: "example",
   name: "Example party",
-  code: "01234567-89abcdef-01234567-89abcdef",
+  code: "A2B3",
   guests: [{ id: "guest", name: "Private guest" }],
 };
 async function decrypt(envelope, code) {
@@ -31,7 +31,7 @@ test("invitation decrypts with its code using the browser-compatible crypto form
 });
 test("another party code cannot decrypt an invitation", async () => {
   await expect(
-    decrypt(encryptParty(party).envelope, "abcdef01-23456789-abcdef01-23456789")
+    decrypt(encryptParty(party).envelope, "Z9Y8")
   ).rejects.toThrow();
 });
 test("public lookup hash is not the encryption key", () => {

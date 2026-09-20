@@ -1,6 +1,6 @@
 # Master invitee list
 
-The confirmed master list currently contains eight guests across two parties. Names and invitation codes are stored only in the private folder, outside the public site and Git.
+The confirmed master list is stored only in the private folder, outside the public site and Git.
 
 The master file is `private/guest-list.json`. Keep each invited person in exactly one party, with a stable party ID and guest ID:
 
@@ -20,7 +20,7 @@ The master file is `private/guest-list.json`. Keep each invited person in exactl
 
 This is a format example, not a confirmed invitation. Add the actual names before generating invitations.
 
-Run `node scripts/build-invitations.js` to generate a private invitation code for each party. The script updates the master JSON and writes an easy-to-read `private/master-invitees.md` with all parties, names and invitation codes. Back up the private folder securely; Git ignores it.
+Run `node scripts/build-invitations.js` to generate a private four-character alphanumeric invitation code for each party. The script updates the master JSON and writes an easy-to-read `private/master-invitees.md` with all parties, names and invitation codes. Back up the private folder securely; Git ignores it.
 
 Only encrypted party files are published under `static/invitations`. Share each code privately with that party. Anyone with a party’s code can view its names and submit its RSVP. There are no email accounts or passwords to manage.
 

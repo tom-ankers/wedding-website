@@ -8,7 +8,7 @@ async function digest(purpose, code) {
   );
 }
 export async function openInvitation(code, basePath) {
-  if (!/^[a-f0-9]{32}$/.test(normalizeCode(code)))
+  if (!/^[a-z0-9]{4}$/.test(normalizeCode(code)))
     throw new Error("Check the invitation code and try again.");
   const lookup = Array.from(
     new Uint8Array(await digest("lookup", code)),
